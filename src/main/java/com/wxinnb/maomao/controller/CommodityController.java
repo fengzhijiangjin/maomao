@@ -4,12 +4,16 @@ import com.wxinnb.maomao.domain.Commodity;
 import com.wxinnb.maomao.service.CommodityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
-@Controller
+@RestController
 public class CommodityController {
     @Resource
     private CommodityService commodityService;
@@ -29,12 +33,16 @@ public class CommodityController {
         return "失败";
     }
 
-    @RequestMapping(value = "findAllCommodity")
-    public void findAllCommodity(){
+    @RequestMapping(value = "findAllCommodity",method = RequestMethod.GET)
+    public Map<String ,Object> findAllCommodity(){
         List<Commodity> allCommodity = commodityService.getAllCommodity();
         for(Commodity commodity : allCommodity){
             System.out.println(commodity);
         }
+        Map<String ,Object> modelMap = new HashMap<String ,Object>();
+        modelMap.put("areaList",allCommodity);
+
+        return modelMap;
     }
 
 }
