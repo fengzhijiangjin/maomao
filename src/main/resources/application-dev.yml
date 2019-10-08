@@ -1,0 +1,31 @@
+server:
+  port: 80
+spring:
+  jpa:
+    properties:
+      hibernate:
+        dialect: com.wxinnb.maomao.config.MysqlConfig  #配置类全路径
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+
+  datasource:
+    #url: jdbc:mysql://183.170.26.17/physical?useSSL=true&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost/maomao?useUnicode=true&characterEncoding=UTF8&useSSL=true&serverTimezone=GMT%2B8
+    username: root
+    #password: 235610
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.mchange.v2.c3p0.ComboPooledDataSource
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+      exclude: static/** ,templates
+  thymeleaf:
+    cache: false  # 禁用模板缓存 页面修改实时生效
+logging:
+  path: ./log  
+  level:
+   edu.physical.**: info
