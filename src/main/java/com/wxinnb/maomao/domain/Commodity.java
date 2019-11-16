@@ -14,6 +14,18 @@ public class Commodity {
     //商品编号
     @Id
     private String coNum;
+
+    //名字
+    private String coName;
+
+    public String getCoName() {
+        return coName;
+    }
+
+    public void setCoName(String coName) {
+        this.coName = coName;
+    }
+
     //商品价格
     private String price;
     //团购价格
@@ -27,6 +39,7 @@ public class Commodity {
     public String toString() {
         return "Commodity{" +
                 "coNum='" + coNum + '\'' +
+                ", coName='" + coName + '\'' +
                 ", price='" + price + '\'' +
                 ", groupPrice='" + groupPrice + '\'' +
                 ", intro='" + intro + '\'' +

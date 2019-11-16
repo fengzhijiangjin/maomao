@@ -2,7 +2,6 @@ package com.wxinnb.maomao.controller;
 
 import com.wxinnb.maomao.domain.Commodity;
 import com.wxinnb.maomao.service.CommodityService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,5 +43,8 @@ public class CommodityController {
 
         return modelMap;
     }
+
+
+
 
 }

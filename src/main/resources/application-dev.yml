@@ -7,6 +7,7 @@ spring:
         dialect: com.wxinnb.maomao.config.MysqlConfig  #配置类全路径
     show-sql: true
     hibernate:
+#      ddl-auto: update
       ddl-auto: update
     open-in-view: true
 
