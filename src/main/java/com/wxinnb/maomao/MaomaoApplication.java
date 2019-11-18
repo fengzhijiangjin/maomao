@@ -1,6 +1,5 @@
 package com.wxinnb.maomao;
 
-import com.wxinnb.maomao.controller.CommodityController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

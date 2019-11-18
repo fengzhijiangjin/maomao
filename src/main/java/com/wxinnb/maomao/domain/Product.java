@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "t_productList")
+@Table(name = "t_product")
 @Proxy(lazy = false)
-public class ProductList {
+public class Product {
 
     @Id
-    private String id;
+    private String productId;
 
     private String name;
 
@@ -30,24 +30,6 @@ public class ProductList {
     private int numberOrders;
 
     private int numberGoodReputation;
-
-    @JsonIgnore  // 忽略实体类间的相互引用 导致 输出json时报错
-    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REMOVE},
-            fetch = FetchType.EAGER,mappedBy = "productList")
-    private List<ProductListPics> productListPics = new ArrayList<>();
-
-//    @JsonIgnore  // 忽略实体类间的相互引用 导致 输出json时报错
-//    @OneToMany(cascade = {CascadeType.MERGE,CascadeType.REMOVE},
-//            fetch = FetchType.EAGER,mappedBy = "productList")
-//    private List<InfoPics> infoPics = new ArrayList<>();
-
-    public List<ProductListPics> getProductListPics() {
-        return productListPics;
-    }
-
-    public void setProductListPics(List<ProductListPics> productListPics) {
-        this.productListPics = productListPics;
-    }
 
     public int getNumberOrders() {
         return numberOrders;
@@ -65,12 +47,12 @@ public class ProductList {
         this.numberGoodReputation = numberGoodReputation;
     }
 
-    public String getId() {
-        return id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public String getName() {
@@ -116,14 +98,13 @@ public class ProductList {
     @Override
     public String toString() {
         return "ProductList{" +
-                "id='" + id + '\'' +
+                "productId='" + productId + '\'' +
                 ", name='" + name + '\'' +
                 ", minPrice='" + minPrice + '\'' +
                 ", originalPrice='" + originalPrice + '\'' +
                 ", pic='" + pic + '\'' +
                 ", numberOrders=" + numberOrders +
                 ", numberGoodReputation=" + numberGoodReputation +
-                ", productListPics=" + productListPics +
 //                ", infoPics=" + infoPics +
                 '}';
     }
