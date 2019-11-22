@@ -1,30 +1,23 @@
 package com.wxinnb.maomao.domain;
 
 
+import com.wxinnb.maomao.domain.support.BaseEntity;
 import org.hibernate.annotations.Proxy;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "t_rollPic")
 @Proxy(lazy = false)
-public class RollPic {
+public class RollPic extends BaseEntity {
     @Id
-    private String rollPicId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "rollPicId", nullable = false)
+    private Integer rollPicId;
 
     private String pic;
 
-    private String productId;
-
-    public String getRollPicId() {
-        return rollPicId;
-    }
-
-    public void setRollPicId(String rollPicId) {
-        this.rollPicId = rollPicId;
-    }
+    private Integer productId;
 
     public String getPic() {
         return pic;
@@ -34,20 +27,28 @@ public class RollPic {
         this.pic = pic;
     }
 
-    public String getProductId() {
+    public Integer getRollPicId() {
+        return rollPicId;
+    }
+
+    public void setRollPicId(Integer rollPicId) {
+        this.rollPicId = rollPicId;
+    }
+
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
     @Override
     public String toString() {
         return "RollPic{" +
-                "rollPicId='" + rollPicId + '\'' +
+                "rollPicId=" + rollPicId +
                 ", pic='" + pic + '\'' +
-                ", productId='" + productId + '\'' +
+                ", productId=" + productId +
                 '}';
     }
 }

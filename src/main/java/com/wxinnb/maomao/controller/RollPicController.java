@@ -2,9 +2,11 @@ package com.wxinnb.maomao.controller;
 
 import com.wxinnb.maomao.domain.RollPic;
 import com.wxinnb.maomao.service.RollPicService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.wxinnb.maomao.utils.JsonResult;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -12,24 +14,38 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-@RestController
+
+@RequestMapping(value = "rollPic")
+@Controller
 public class RollPicController {
     @Resource
     private RollPicService rollPicService;
 
-    @RequestMapping(value = "addRollPic")
-    public String addRollPic(){
-        RollPic rollPic = new RollPic();
+    @RequestMapping(value = "/admin/rollPic/{id}",method = RequestMethod.GET)
+    public String edit(@PathVariable Integer id, ModelMap modelMap ){
+//        Product product = productService.getProductById(id);
 
-        rollPic.setRollPicId(UUID.randomUUID().toString());
-        rollPic.setPic("http://47.97.210.197/maomao/xiaoqi2.jpg");
-        rollPic.setProductId("868b2582-89f5-46a7-9edb-04e8e32d95f5");
+//        modelMap.put("product",product);
+        System.out.println(id);
+        modelMap.put("productId",id);
+        return "/admin/product/rollPic";
 
-        Integer integer = rollPicService.addRollPic(rollPic);
+    }
 
-        if (integer == 1) return "添加成功";
+    @RequestMapping(value = "/admin/addRollPic")
+    @ResponseBody
+    public JsonResult addRollPic(@RequestParam("file") MultipartFile file, Integer productId){
+//        System.out.println();
+        try{
+            rollPicService.uploadFile(file,productId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResult.failure(e.getMessage());
+        }
 
-        return "失败";
+        return JsonResult.success();
+
+
     }
 
     @RequestMapping(value = "findAllCommodity",method = RequestMethod.GET)

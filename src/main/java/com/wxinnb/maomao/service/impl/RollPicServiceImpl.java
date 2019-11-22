@@ -3,7 +3,9 @@ package com.wxinnb.maomao.service.impl;
 import com.wxinnb.maomao.dao.RollPicDao;
 import com.wxinnb.maomao.domain.RollPic;
 import com.wxinnb.maomao.service.RollPicService;
+import com.wxinnb.maomao.utils.FileUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -36,11 +38,23 @@ public class RollPicServiceImpl implements RollPicService {
     }
 
     @Override
-    public List<RollPic> getRollPicByProductId(String productId) {
+    public List<RollPic> getRollPicByProductId(Integer productId) {
 
         List<RollPic> rollPics = rollPicDao.getRollPicByProductId(productId);
         if(rollPics!=null)return rollPics;
 
         return null;
+    }
+
+    @Override
+    public void uploadFile(MultipartFile file, Integer productId) {
+        RollPic rollPic = new RollPic();
+
+        String path = FileUtils.saveIcon(file);
+
+        rollPic.setPic(path);
+        rollPic.setProductId(productId);
+
+        rollPicDao.save(rollPic);
     }
 }

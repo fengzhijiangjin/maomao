@@ -2,6 +2,7 @@ package com.wxinnb.maomao.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.wxinnb.maomao.domain.support.BaseEntity;
 import org.hibernate.annotations.Proxy;
 
 
@@ -12,10 +13,12 @@ import java.util.List;
 @Entity
 @Table(name = "t_product")
 @Proxy(lazy = false)
-public class Product {
+public class Product extends BaseEntity{
 
     @Id
-    private String productId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "productId", nullable = false)
+    private Integer productId;
 
     private String name;
 
@@ -30,6 +33,16 @@ public class Product {
     private int numberOrders;
 
     private int numberGoodReputation;
+
+    private int state;
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
 
     public int getNumberOrders() {
         return numberOrders;
@@ -47,11 +60,11 @@ public class Product {
         this.numberGoodReputation = numberGoodReputation;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -95,9 +108,10 @@ public class Product {
 //        this.infoPics = infoPics;
 //    }
 
+
     @Override
     public String toString() {
-        return "ProductList{" +
+        return "Product{" +
                 "productId='" + productId + '\'' +
                 ", name='" + name + '\'' +
                 ", minPrice='" + minPrice + '\'' +
@@ -105,7 +119,7 @@ public class Product {
                 ", pic='" + pic + '\'' +
                 ", numberOrders=" + numberOrders +
                 ", numberGoodReputation=" + numberGoodReputation +
-//                ", infoPics=" + infoPics +
+                ", state=" + state +
                 '}';
     }
 }
