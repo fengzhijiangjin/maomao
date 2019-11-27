@@ -10,6 +10,6 @@ import java.util.List;
 public interface DetailsDao extends JpaRepository<Details,String> {
 
     @Query(value = "select d from Details d where d.productId=:productId")
-    List<Details> getDetailsByProductId(@Param("productId")String productId);
+    List<Details> getDetailsByProductId(@Param("productId")Integer productId);
 
 }

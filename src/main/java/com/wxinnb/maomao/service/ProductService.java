@@ -21,4 +21,7 @@ public interface ProductService {
 
     void uploadFile(MultipartFile file, Integer productId);
 
+    void delete(Integer id);
+
+    Product getProductByName(String ProductName);
 }

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-    <title>商品列表</title>
+    <title>拼团列表</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
 
@@ -28,7 +28,7 @@
             <div class="col-sm-12">
                 <div class="ibox ">
                     <div class="ibox-title">
-                        <h5>商品管理</h5>
+                        <h5>拼团管理</h5>
                     </div>
                     <div class="ibox-content">
                         <p>
@@ -81,7 +81,7 @@
 			    //必须设置，不然request.getParameter获取不到请求参数
 			    contentType: "application/x-www-form-urlencoded",
 			    //获取数据的Servlet地址  
-			    url: "${ctx}/product/admin/list",
+			    url: "${ctx}/group/admin/list",
 			    //表格显示条纹  
 			    striped: true,
 			    //启动分页  
@@ -112,45 +112,37 @@
 			    //数据列
 			    columns: [{
 			        title: "ID",
-			        field: "productId",
+			        field: "id",
 			        sortable: true
 			    },{
-			        title: "商品名",
+			        title: "拼团名",
 			        field: "name"
 			    },{
-			        title: "原价",
-			        field: "originalPrice",
+			        title: "商品名",
+			        field: "productName",
+			    },{
+			        title: "图标",
+			        field: "pic"
+			    },{
+			        title: "价格",
+			        field: "price",
+			    },{
+			        title: "单位",
+			        field: "unit",
 
 			    },{
-			        title: "优惠价",
-			        field: "minPrice"
+			        title: "目标数量",
+			        field: "aim",
 			    },{
-			        title: "状态",
-			        field: "state",
-			        formatter: function(value, row, index) {
-                        if (value == '0') 
-                        	return '<span class="label label-warning">在售</span>';
-                        return '<span class="label label-primary">已下架</span>';
-                    }
-			    }
-			    // ,{
-			    //     title: "创建时间",
-			    //     field: "createTime",
-			    //     sortable: true
-			    // },{
-			    //     title: "更新时间",
-			    //     field: "updateTime",
-			    //     sortable: true
-			    // }
-			    ,{
+			        title: "当前数量",
+			        field: "count",
+			        sortable: true
+			    },{
 			        title: "操作",
 			        field: "empty",
                     formatter: function (value, row, index) {
-                    	var operateHtml = '<button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.productId+'\')"> <i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;';
-                    	operateHtml = operateHtml + '<button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.productId+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;';
-                    	operateHtml = operateHtml + '<button class="btn btn-info btn-xs" type="button" onclick="icon(\''+row.productId+'\')"><i class="fa fa-arrows"></i>&nbsp;+图标</button>&nbsp;';
-                        operateHtml = operateHtml + '<button class="btn btn-info btn-xs" type="button" onclick="rollPic(\''+row.productId+'\')"><i class="fa fa-arrows"></i>&nbsp;+轮播图</button>&nbsp;'
-                        operateHtml = operateHtml + '<button class="btn btn-info btn-xs" type="button" onclick="detail(\''+row.productId+'\')"><i class="fa fa-arrows"></i>&nbsp;+详情</button>';
+                    	var operateHtml = '<button class="btn btn-primary btn-xs" type="button" onclick="edit(\''+row.id+'\')"> <i class="fa fa-edit"></i>&nbsp;修改</button> &nbsp;';
+                    	operateHtml = operateHtml + '<button class="btn btn-danger btn-xs" type="button" onclick="del(\''+row.id+'\')"><i class="fa fa-remove"></i>&nbsp;删除</button> &nbsp;';
                         return operateHtml;
                     }
 			    }]
@@ -160,11 +152,11 @@
         function edit(id){
         	layer.open({
         	      type: 2,
-        	      title: '商品修改',
+        	      title: '用户修改',
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '/product/admin/update/' + id,
+        	      content: '/group/admin/update/' + id,
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
@@ -173,61 +165,23 @@
         function add(){
         	layer.open({
         	      type: 2,
-        	      title: '商品添加',
+        	      title: '用户添加',
         	      shadeClose: true,
         	      shade: false,
         	      area: ['893px', '600px'],
-        	      content: '/product/admin/add',
+        	      content: '/group/admin/add',
         	      end: function(index){
         	    	  $('#table_list').bootstrapTable("refresh");
        	    	  }
         	    });
         }
-        function icon(id){
-        	layer.open({
-        	      type: 2,
-        	      title: '添加/修改图标',
-        	      shadeClose: true,
-        	      shade: false,
-        	      area: ['893px', '600px'],
-        	      content: '/product/admin/icon/'  + id,
-        	      end: function(index){
-        	    	  $('#table_list').bootstrapTable("refresh");
-       	    	  }
-        	    });
-        }
-        function rollPic(id) {
-            layer.open({
-                type: 2,
-                title: '添加轮播图',
-                shadeClose: true,
-                shade: false,
-                area: ['893px', '600px'],
-                content: '/rollPic/admin/rollPic/'  + id,
-                end: function(index){
-                    $('#table_list').bootstrapTable("refresh");
-                }
-            });
-        }
-        function detail(id) {
-            layer.open({
-                type: 2,
-                title: '添加详情',
-                shadeClose: true,
-                shade: false,
-                area: ['893px', '600px'],
-                content: '/detail/admin/detail/'  + id,
-                end: function(index){
-                    $('#table_list').bootstrapTable("refresh");
-                }
-            });
-        }
+
         function del(id){
         	layer.confirm('确定删除吗?', {icon: 3, title:'提示'}, function(index){
         		$.ajax({
     	    		   type: "POST",
     	    		   dataType: "json",
-    	    		   url: "/product/admin/delete/" + id,
+    	    		   url: "/group/admin/delete/" + id,
     	    		   success: function(msg){
 	 	   	    			layer.msg(msg.message, {time: 2000},function(){
 	 	   	    				$('#table_list').bootstrapTable("refresh");

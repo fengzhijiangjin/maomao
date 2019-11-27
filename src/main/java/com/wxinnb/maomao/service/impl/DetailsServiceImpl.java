@@ -4,7 +4,9 @@ package com.wxinnb.maomao.service.impl;
 import com.wxinnb.maomao.dao.DetailsDao;
 import com.wxinnb.maomao.domain.Details;
 import com.wxinnb.maomao.service.DetailsService;
+import com.wxinnb.maomao.utils.FileUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
@@ -27,12 +29,23 @@ public class DetailsServiceImpl implements DetailsService {
     }
 
     @Override
-    public List<Details> getDetailsByProductId(String productId) {
+    public List<Details> getDetailsByProductId(Integer productId) {
 
         List<Details> details = detailsDao.getDetailsByProductId(productId);
 
         if (details!=null) return details;
 
         return null;
+    }
+
+    @Override
+    public void uploadFile(MultipartFile file, Integer productId) {
+        Details details = new Details();
+        details.setProductId(productId);
+        String path = FileUtils.saveIcon(file);
+        details.setPic(path);
+
+        detailsDao.save(details);
+
     }
 }

@@ -87,5 +87,18 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
+    @Override
+    public void delete(Integer id) {
+        productDao.deleteById(id);
+    }
+
+    @Override
+    public Product getProductByName(String productName) {
+
+        Product productByName = productDao.getProductByName(productName);
+
+        return productByName;
+    }
+
 
 }

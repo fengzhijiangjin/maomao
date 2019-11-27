@@ -80,7 +80,30 @@ public class ProductController extends BaseController{
         return "失败";
     }
 
-    @RequestMapping(value = "findAllProduct",method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/update/{id}",method = RequestMethod.GET)
+    public String update(@PathVariable Integer id, ModelMap modelMap){
+
+        Product product = productService.getProductById(id);
+
+        modelMap.put("product", product);
+        return "/admin/product/form";
+    }
+
+    @RequestMapping(value = "/admin/delete/{id}",method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResult delete(@PathVariable Integer id, ModelMap modelMap){
+        try {
+            productService.delete(id);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResult.failure(e.getMessage());
+        }
+
+        return JsonResult.success();
+    }
+
+    @RequestMapping(value = "/findAllProduct",method = RequestMethod.GET)
     @ResponseBody
     public Map<String ,Object> findAllCommodity(){
         List<Product> allProduct = productService.getAllProduct();
@@ -93,13 +116,13 @@ public class ProductController extends BaseController{
         return modelMap;
     }
 
-    @RequestMapping(value = "getProductById",method = RequestMethod.GET)
+    @RequestMapping(value = "/getProductById",method = RequestMethod.GET)
     @ResponseBody
     public Map<String ,Object> getProductById(Integer id){
 
         Product product = productService.getProductById(id);
 
-        List<Details> details = detailsService.getDetailsByProductId(id.toString());
+        List<Details> details = detailsService.getDetailsByProductId(id);
         System.out.println(details);
 
         List<RollPic> rollPics = rollPicService.getRollPicByProductId(id);

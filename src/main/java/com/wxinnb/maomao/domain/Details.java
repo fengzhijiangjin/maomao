@@ -11,17 +11,19 @@ import javax.persistence.*;
 public class Details {
 
     @Id
-    private String detailsId;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "rollPicId", nullable = false)
+    private Integer detailsId;
 
     private String pic;
 
-    private String productId;
+    private Integer productId;
 
-    public String getDetailsId() {
+    public Integer getDetailsId() {
         return detailsId;
     }
 
-    public void setDetailsId(String detailsId) {
+    public void setDetailsId(Integer detailsId) {
         this.detailsId = detailsId;
     }
 
@@ -33,11 +35,11 @@ public class Details {
         this.pic = pic;
     }
 
-    public String getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 

@@ -87,12 +87,12 @@
                         <ul class="nav nav-second-level">
                         <#--<@shiro.hasPermission name="system:user:index">-->
                             <li>
-                                <a class="J_menuItem" href="/product/admin/index">商品</a>
+                                <a class="J_menuItem" href="/product/admin/index">商品管理</a>
                             </li>
                         <#--</@shiro.hasPermission>-->
                         <#--<@shiro.hasPermission name="system:role:index">-->
                             <li>
-                                <a class="J_menuItem" href="/admin/role/index">角色管理</a>
+                                <a class="J_menuItem" href="/group/admin/index">拼团管理</a>
                             </li>
                         <#--</@shiro.hasPermission>-->
                         <#--<@shiro.hasPermission name="system:resource:index">-->

@@ -10,7 +10,8 @@ public class FileUtils {
     public static String saveIcon(MultipartFile icon) {
 
 //        String mkdir = mkdir() + "/newsIcon/";
-        String path = "D:/imgs/";
+//        String path = "D:/imgs/";
+        String path = "/usr/images/maomao/";
         //保存图片到
         String name = UUID.randomUUID().toString().replaceAll("-", "");
         //jpg
@@ -23,7 +24,8 @@ public class FileUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return url_path;
+        String NetPath = "http://47.97.210.197/maomao/" + name + "." + ext;
+        return NetPath;
     }
 
 }

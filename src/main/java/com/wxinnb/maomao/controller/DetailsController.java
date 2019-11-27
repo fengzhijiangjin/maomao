@@ -1,38 +1,51 @@
 package com.wxinnb.maomao.controller;
 
 
-import com.wxinnb.maomao.domain.Product;
+
 import com.wxinnb.maomao.domain.Details;
 import com.wxinnb.maomao.service.DetailsService;
 
-import com.wxinnb.maomao.service.ProductService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import com.wxinnb.maomao.utils.JsonResult;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.UUID;
 
-@RestController
+@RequestMapping("detail")
+@Controller
 public class DetailsController {
 
     @Resource
     DetailsService detailsService;
 
 
+    @RequestMapping(value = "/admin/detail/{id}", method = RequestMethod.GET)
+    public String detail(@PathVariable Integer id, ModelMap modelMap ){
+        modelMap.put("productId",id);
+        return "/admin/product/detail";
+    }
 
-    @RequestMapping(value = "addDetails")
-    public String addDetails(){
+    @RequestMapping(value = "/admin/addDetail")
+    @ResponseBody
+    public JsonResult addDetails(@RequestParam("file") MultipartFile file, Integer productId){
 
 
-        Details details = new Details();
-        details.setProductId("868b2582-89f5-46a7-9edb-04e8e32d95f5");
-        details.setDetailsId(UUID.randomUUID().toString());
-        details.setPic("http://47.97.210.197/maomao/wenhao.png");
+        try{
+            detailsService.uploadFile(file,productId);
+        }catch (Exception e){
+            e.printStackTrace();
+            return JsonResult.failure(e.getMessage());
+        }
 
-        detailsService.addDetails(details);
+        return JsonResult.success();
 
-        return "niubi";
+
     }
 
 }
