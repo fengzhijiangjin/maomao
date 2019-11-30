@@ -36,23 +36,37 @@
 		</encoder>
 	</appender>
 	<!--=============================== 日志输出: 默认主业务日志 ====================================== -->
+	<!--<logger name="org.springframework">-->
+		<!--<level value="WARN" />-->
+	<!--</logger>-->
+	<!--<logger name="org.apache.shiro">-->
+		<!--<level value="WARN" />-->
+	<!--</logger>-->
+	<!--<logger name="freemarker">-->
+		<!--<level value="WARN" />-->
+	<!--</logger>-->
+	<!--<logger name="org.hibernate">-->
+		<!--<level value="WARN" />-->
+	<!--</logger>-->
+
 	<logger name="org.springframework">
-		<level value="WARN" />
+	<level value="ERROR" />
 	</logger>
 	<logger name="org.apache.shiro">
-		<level value="WARN" />
+	<level value="ERROR" />
 	</logger>
 	<logger name="freemarker">
-		<level value="WARN" />
+	<level value="ERROR" />
 	</logger>
 	<logger name="org.hibernate">
-		<level value="WARN" />
+	<level value="ERROR" />
 	</logger>
+
 	<logger name="org.hibernate.SQL">
 		<level value="DEBUG" />
 	</logger>
 	
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="APP" />
 		<appender-ref ref="STDOUT" />
 	</root>

@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class GroupServiceImpl implements GroupService{
@@ -27,8 +29,10 @@ public class GroupServiceImpl implements GroupService{
 
     @Override
     public void saveOrUpdate(Group group) {
+
         if (group.getId()!=null){
             Group dbGroup = groupDao.getOne(group.getId());
+
             dbGroup.setName(group.getName());
             dbGroup.setProductId(group.getProductId());
             dbGroup.setProductName(group.getProductName());
@@ -43,6 +47,7 @@ public class GroupServiceImpl implements GroupService{
         }else {
             groupDao.save(group);
         }
+
     }
 
     @Override
@@ -54,5 +59,11 @@ public class GroupServiceImpl implements GroupService{
     @Override
     public void delete(Integer id) {
         groupDao.deleteById(id);
+    }
+
+
+    @Override
+    public List<Group> getAllGroup() {
+        return groupDao.findAll();
     }
 }

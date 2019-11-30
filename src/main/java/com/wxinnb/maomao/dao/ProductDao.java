@@ -8,10 +8,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.Set;
+
 public interface ProductDao extends IBaseDao<Product, Integer>{
 
     Page<Product> findByNameContaining(String searchText, Pageable pageable);
 
     @Query(value = "select p from Product p where p.name = :productName")
     Product getProductByName(@Param(value = "productName") String productName);
+
+    @Query(value = "select p.name from Product p")
+    Set<String> getAllProductName();
 }

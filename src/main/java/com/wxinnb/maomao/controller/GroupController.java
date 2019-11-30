@@ -8,8 +8,11 @@ import com.wxinnb.maomao.utils.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "group")
@@ -36,7 +39,25 @@ public class GroupController extends BaseController{
     }
 
     @RequestMapping(value = "/admin/add", method = RequestMethod.GET)
-    public String add(ModelMap map){return "/admin/group/form";}
+    public String add(Model model){
+        Set<String> allproductname = productService.getAllProductName();
+
+        model.addAttribute("allproductname",allproductname);
+
+//        map.put("allProduct",allProduct);
+//        System.out.println(allProduct);
+//
+//        List<String> list = new ArrayList<>();
+//        for (Product product :allProduct){
+//            list.add(product.getName());
+//        }
+//        map.put("list",list);
+//        Map<String ,Object> modelMap = new HashMap<>();
+//        modelMap.put("allProduct",allProduct)
+
+        return "/admin/group/form";
+
+    }
 
     @RequestMapping(value = "/admin/edit",method = RequestMethod.POST)
     @ResponseBody
@@ -66,7 +87,9 @@ public class GroupController extends BaseController{
         Group group = groupService.getGroupById(id);
 
         modelMap.put("group", group);
-        return "/admin/group/form";
+        List<Product> allProduct = productService.getAllProduct();
+        modelMap.put("allProduct",allProduct);
+        return "/admin/group/form2";
     }
 
     @RequestMapping(value = "/admin/delete/{id}",method = RequestMethod.POST)
@@ -81,6 +104,17 @@ public class GroupController extends BaseController{
         }
 
         return JsonResult.success();
+    }
+
+    @RequestMapping(value = "/findAllGroup",method = RequestMethod.GET)
+    @ResponseBody
+    public  Map<String ,Object> findAllGroup(){
+        List<Group> groups =  groupService.getAllGroup();
+
+        Map<String ,Object> modelMap = new HashMap<>();
+        modelMap.put("groups",groups);
+
+        return modelMap;
     }
 
 }

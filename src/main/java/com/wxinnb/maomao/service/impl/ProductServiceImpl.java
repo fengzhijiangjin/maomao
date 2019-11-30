@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -101,4 +102,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
 
+    @Override
+    public Set<String> getAllProductName() {
+        return productDao.getAllProductName();
+
+    }
 }

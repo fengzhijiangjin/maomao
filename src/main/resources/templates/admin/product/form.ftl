@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">商品名：</label>
                                 <div class="col-sm-8">
-                                    <input id="name" name="name" class="form-control" type="text" value="${product.name}" <#if product?exists> readonly="readonly"</#if> >
+                                    <input id="name" name="name" class="form-control" type="text" value="${product.name}"  >
                                 </div>
                             </div>
                             <div class="form-group">

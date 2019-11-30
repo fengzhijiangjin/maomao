@@ -6,6 +6,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Set;
 
 public interface ProductService {
     //添加商品
@@ -24,4 +25,6 @@ public interface ProductService {
     void delete(Integer id);
 
     Product getProductByName(String ProductName);
+
+    Set<String> getAllProductName();
 }

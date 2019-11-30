@@ -18,13 +18,13 @@ public class FileUtils {
 //        String ext = FilenameUtils.getExtension(newsIcon.getOriginalFilename());
         String fileName = icon.getOriginalFilename();
         String ext = fileName.substring(fileName.lastIndexOf("."));
-        String url_path = path + name + "." + ext;
+        String url_path = path + name  + ext;
         try {
             icon.transferTo(new File( url_path)); //保存图片
         } catch (Exception e) {
             e.printStackTrace();
         }
-        String NetPath = "http://47.97.210.197/maomao/" + name + "." + ext;
+        String NetPath = "http://47.97.210.197/maomao/" + name + ext;
         return NetPath;
     }
 
