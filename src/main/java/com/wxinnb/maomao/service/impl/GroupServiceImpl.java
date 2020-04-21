@@ -53,7 +53,6 @@ public class GroupServiceImpl implements GroupService{
     @Override
     public Group getGroupById(Integer id) {
         return groupDao.getOne(id);
-//
     }
 
     @Override
@@ -66,4 +65,5 @@ public class GroupServiceImpl implements GroupService{
     public List<Group> getAllGroup() {
         return groupDao.findAll();
     }
+
 }

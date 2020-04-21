@@ -151,6 +151,8 @@ public class ProductController extends BaseController{
     @ResponseBody
     public JsonResult addicon(@RequestParam("file") MultipartFile file,Integer productId){
 
+
+
         System.out.println(file.getOriginalFilename()+"----------"+productId);
         try{
             productService.uploadFile(file,productId);

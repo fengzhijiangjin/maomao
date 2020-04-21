@@ -15,6 +15,8 @@ public class WxUser {
 
     private String openId;
 
+
+
     public Integer getId() {
         return id;
     }
@@ -30,6 +32,8 @@ public class WxUser {
     public void setOpenId(String openId) {
         this.openId = openId;
     }
+
+
 
     @Override
     public String toString() {
