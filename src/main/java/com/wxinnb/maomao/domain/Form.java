@@ -110,7 +110,7 @@ public class Form extends BaseEntity {
         return "Form{" +
                 "id=" + id +
                 ", groupId=" + groupId +
-                ", userId=" + userId +
+                ", userId='" + userId + '\'' +
                 ", remark='" + remark + '\'' +
                 ", count=" + count +
                 ", groupPrice='" + groupPrice + '\'' +

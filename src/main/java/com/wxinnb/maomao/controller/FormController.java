@@ -64,6 +64,18 @@ public class FormController extends BaseController{
         return modelMap;
     }
 
+    @RequestMapping(value = "/admin/index")
+    public String index(){
 
+        return "/admin/form/index";
+    }
+
+    @RequestMapping(value = "/admin/list")
+    @ResponseBody
+    public Page<Form> list(@RequestParam(value="searchText",required=false) String searchText ){
+        System.out.println("--------进入List----------");
+        Page<Form> page = formService.findAllByLike(searchText, getPageRequest());
+        return page;
+    }
 
 }

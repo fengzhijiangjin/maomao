@@ -42,11 +42,7 @@ public class GroupController extends BaseController{
     @RequestMapping(value = "/admin/list")
     @ResponseBody
     public Page<Group> list(@RequestParam(value="searchText",required=false) String searchText ){
-
-
-
         Page<Group> page = groupService.findAllByLike(searchText, getPageRequest());
-
         return page;
     }
 
@@ -55,17 +51,6 @@ public class GroupController extends BaseController{
         Set<String> allproductname = productService.getAllProductName();
 
         model.addAttribute("allproductname",allproductname);
-
-//        map.put("allProduct",allProduct);
-//        System.out.println(allProduct);
-//
-//        List<String> list = new ArrayList<>();
-//        for (Product product :allProduct){
-//            list.add(product.getName());
-//        }
-//        map.put("list",list);
-//        Map<String ,Object> modelMap = new HashMap<>();
-//        modelMap.put("allProduct",allProduct)
 
         return "/admin/group/form";
 

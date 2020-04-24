@@ -97,7 +97,7 @@
                         <#--</@shiro.hasPermission>-->
                         <#--<@shiro.hasPermission name="system:resource:index">-->
                             <li>
-                                <a class="J_menuItem" href="/admin/resource/index">订单管理</a>
+                                <a class="J_menuItem" href="/form/admin/index">订单管理</a>
                             </li>
                         <#--</@shiro.hasPermission>-->
                         </ul>

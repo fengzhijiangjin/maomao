@@ -42,49 +42,42 @@
 
                 <div class="ibox-content">
                     <form class="form-horizontal m-t" id="frm" method="post" action="${ctx}/group/admin/edit">
-
+                        <input type="hidden" id="id" name="id" value="${group.id}">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">拼团名：</label>
                             <div class="col-sm-8">
-                                <input id="name" name="name" class="form-control" type="text"  >
+                                <input id="name" name="name" class="form-control" type="text" value="${group.name}"  >
                             </div>
                         </div>
                         <div class="form-group" >
                             <label class="col-sm-3 control-label">商品名：</label>
-                            <div class="col-sm-8">
-                                <input id="productName" name="productName" class="form-control" type="text"  >
-                            </div>
-                            <!--<div class="col-sm-8">-->
-                                <!--<select name="productName" class="form-control">-->
-                                    <!--<option value="">&#45;&#45;请选择&#45;&#45;</option>-->
-                                    <!--<option th:each="productname:{allproductname}"-->
-                                            <!--th:value="${productname}" th:text="${productname}"></option>-->
 
-                                <!--</select>-->
-                            <!--</div>-->
+                            <div class="col-sm-8">
+                                <input id="productName" name="productName" class="form-control" type="text" value="${group.productName}">
+                            </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">价格：</label>
                             <div class="col-sm-8">
-                                <input id="price" name="price" class="form-control" type="text" >
+                                <input id="price" name="price" class="form-control" type="text" value="${group.price}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">单位：</label>
                             <div class="col-sm-8">
-                                <input id="unit" name="unit" class="form-control" type="text" >
+                                <input id="unit" name="unit" class="form-control" type="text" value="${group.unit}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">目标数量：</label>
                             <div class="col-sm-8">
-                                <input id="aim" name="aim" class="form-control" type="text" >
+                                <input id="aim" name="aim" class="form-control" type="text" value="${group.aim}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">当前数量：</label>
                             <div class="col-sm-8">
-                                <input id="count" name="count" class="form-control" type="text" >
+                                <input id="count" name="count" class="form-control" type="text" value="${group.count}">
                             </div>
                         </div>
 
@@ -92,8 +85,8 @@
                             <label class="col-sm-3 control-label">状态：</label>
                             <div class="col-sm-8">
                                 <select name="state" class="form-control">
-                                    <option value="0" >正在拼团</option>
-                                    <option value="1" >已截团</option>
+                                    <option value="0" <#if group.state == 0>selected="selected"</#if>>正在拼团</option>
+                                    <option value="1" <#if group.state == 1>selected="selected"</#if>>已截团</option>
                                 </select>
                             </div>
                         </div>
